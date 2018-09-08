@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -50,7 +50,7 @@
             </Pane>
             <Pane layoutX="-7.0" layoutY="77.0" prefHeight="2.0" prefWidth="392.0" style="-fx-background-color: #000a05;" />
             <ListView fx:id="list" layoutX="14.0" layoutY="88.0" prefHeight="454.0" prefWidth="354.0" />
-            <Button layoutX="21.0" layoutY="552.0" mnemonicParsing="false" onAction="#onKlickOk" text="ok" />
+            <Button layoutX="21.0" layoutY="552.0" mnemonicParsing="false" onAction="#onClickOk" text="ok" />
          </children>
       </Pane>
    </children>
