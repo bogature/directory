@@ -30,7 +30,7 @@
                         <Image url="@www.png" />
                      </image>
                   </ImageView>
-                  <TextField layoutX="132.0" layoutY="28.0" prefHeight="28.0" prefWidth="243.0" style="-fx-background-color: #00e277; -fx-text-fill: #FFFFFF;">
+                  <TextField fx:id="search" layoutX="132.0" layoutY="28.0" prefHeight="28.0" prefWidth="243.0" style="-fx-background-color: #00e277; -fx-text-fill: #FFFFFF;">
                      <effect>
                         <DropShadow blurType="GAUSSIAN" color="#ffffffce" height="69.84" radius="34.417500000000004" spread="0.13" width="69.83" />
                      </effect>

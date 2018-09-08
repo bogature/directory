@@ -17,6 +17,29 @@ public class DB {
     private static Statement stmt;
     private static ResultSet rs;
 
+    public static void uppdateContact(int id,String name,String surname,String group){
+        try {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            con = DriverManager.getConnection(url, user, password);
+            stmt = con.createStatement();
+            String query = "update contact set contact.name = '"+name+"', contact.surname ='"+surname+"', contact.group ='"+group+"' where id ="+id;
+
+            stmt.executeUpdate(query);
+
+        } catch (SQLException sqlEx) {
+            sqlEx.printStackTrace();
+        } finally {
+            //close connection ,stmt and resultset here
+            try { con.close(); } catch(SQLException se) { /*can't do anything */ }
+            try { stmt.close(); } catch(SQLException se) { /*can't do anything */ }
+        }
+    }
+
     public static void addContact(String name,String surname,String group){
         try {
             try {
@@ -75,6 +98,10 @@ public class DB {
     }
 
     public static ArrayList<ContactNumber> getNumbers(Contact contact){
+        return getNumbers(contact.getId());
+    }
+
+    public static ArrayList<ContactNumber> getNumbers(int id1){
         ArrayList<ContactNumber> arrayList = new ArrayList<>();
         try {
             try {
@@ -85,7 +112,7 @@ public class DB {
 
             con = DriverManager.getConnection(url, user, password);
             stmt = con.createStatement();
-            String query = "select * from contactnumber where contactnumber.contact = "+contact.getId();
+            String query = "select * from contactnumber where contactnumber.contact = "+id1;
             rs = stmt.executeQuery(query);
             while (rs.next())
             {
@@ -104,6 +131,80 @@ public class DB {
         }
 
         return arrayList;
+    }
+
+    public static void addNumber(String number,int id){
+        try {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            con = DriverManager.getConnection(url, user, password);
+            stmt = con.createStatement();
+            String query = "insert into contactnumber (contactnumber.number, contactnumber.contact) values ('"+number+"','"+id+"')";
+
+            stmt.executeUpdate(query);
+
+        } catch (SQLException sqlEx) {
+            sqlEx.printStackTrace();
+        } finally {
+            //close connection ,stmt and resultset here
+            try { con.close(); } catch(SQLException se) { /*can't do anything */ }
+            try { stmt.close(); } catch(SQLException se) { /*can't do anything */ }
+        }
+    }
+
+    public static void deleteNumber(int id){
+        try {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            con = DriverManager.getConnection(url, user, password);
+            stmt = con.createStatement();
+            String query = "delete from contactnumber where id="+id;
+
+            stmt.executeUpdate(query);
+
+        } catch (SQLException sqlEx) {
+            sqlEx.printStackTrace();
+        } finally {
+            //close connection ,stmt and resultset here
+            try { con.close(); } catch(SQLException se) { /*can't do anything */ }
+            try { stmt.close(); } catch(SQLException se) { /*can't do anything */ }
+        }
+    }
+
+    public static void deleteContact(int id){
+        try {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            for (ContactNumber number :
+                    DB.getNumbers(id)) {
+                deleteNumber(number.getId());
+            }
+
+            con = DriverManager.getConnection(url, user, password);
+            stmt = con.createStatement();
+            String query = "delete from contact where id="+id;
+
+            stmt.executeUpdate(query);
+
+        } catch (SQLException sqlEx) {
+            sqlEx.printStackTrace();
+        } finally {
+            //close connection ,stmt and resultset here
+            try { con.close(); } catch(SQLException se) { /*can't do anything */ }
+            try { stmt.close(); } catch(SQLException se) { /*can't do anything */ }
+        }
     }
 }
 

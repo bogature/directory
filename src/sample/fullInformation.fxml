@@ -36,6 +36,8 @@
             <TextField fx:id="name" layoutX="14.0" layoutY="89.0" prefHeight="25.0" prefWidth="354.0" promptText="Name" />
             <TextField fx:id="surname" layoutX="14.0" layoutY="114.0" prefHeight="25.0" prefWidth="354.0" promptText="Surname" />
             <ChoiceBox fx:id="choiceBox" layoutX="13.0" layoutY="139.0" prefHeight="25.0" prefWidth="354.0" />
+            <Button fx:id="deleteButton" disable="true" layoutX="272.0" layoutY="317.0" mnemonicParsing="false" onAction="#deleteNumber" text="Delete number" />
+            <Button layoutX="14.0" layoutY="317.0" mnemonicParsing="false" onAction="#deleteContact" text="Delete Contact" />
          </children>
       </Pane>
    </children>
