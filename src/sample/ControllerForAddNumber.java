@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +27,18 @@ public class ControllerForAddNumber {
             ControllerWithFullInformation.listNumbers.clear();
             ControllerWithFullInformation.listNumbers.addAll( FXCollections.observableArrayList(DB.getNumbers(Controller.itemSelected)));
         }
+    }
+
+    public void initialize(){
+        numberField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    numberField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
 
 }
