@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,6 +54,7 @@ public class Controller {
         list.getSelectionModel().selectedItemProperty().addListener((prop, old, newItem) -> {
             try {
                 if (newItem != null) {
+                    Platform.runLater(() -> list.getSelectionModel().clearSelection());
                     itemSelected = newItem;
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("fullInformation.fxml"));

@@ -8,8 +8,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DB {
+    //private static final String url = "jdbc:mysql://localhost:3307/mydb";
     private static final String url = "jdbc:mysql://localhost:3306/mydb";
     private static final String user = "root";
+    //private static final String password = "root";
     private static final String password = "1";
 
     // JDBC variables for opening and managing connection
