@@ -8,9 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DB {
-    private static final String url = "jdbc:mysql://localhost:3307/mydb";
+    private static final String url = "jdbc:mysql://localhost:3306/mydb";
     private static final String user = "root";
-    private static final String password = "root";
+    private static final String password = "1";
 
     // JDBC variables for opening and managing connection
     private static Connection con;
@@ -74,7 +74,7 @@ public class DB {
 
             con = DriverManager.getConnection(url, user, password);
             stmt = con.createStatement();
-            String query = "select * from contact";
+            String query = "select * from contact order by name";
             rs = stmt.executeQuery(query);
             while (rs.next())
             {
@@ -112,7 +112,7 @@ public class DB {
 
             con = DriverManager.getConnection(url, user, password);
             stmt = con.createStatement();
-            String query = "select * from contactnumber where contactnumber.contact = "+id1;
+            String query = "select * from contactNumber where contactNumber.contact = "+id1;
             rs = stmt.executeQuery(query);
             while (rs.next())
             {
@@ -143,7 +143,7 @@ public class DB {
 
             con = DriverManager.getConnection(url, user, password);
             stmt = con.createStatement();
-            String query = "insert into contactnumber (contactnumber.number, contactnumber.contact) values ('"+number+"','"+id+"')";
+            String query = "insert into contactNumber (contactNumber.number, contactNumber.contact) values ('"+number+"','"+id+"')";
 
             stmt.executeUpdate(query);
 
@@ -166,7 +166,7 @@ public class DB {
 
             con = DriverManager.getConnection(url, user, password);
             stmt = con.createStatement();
-            String query = "delete from contactnumber where id="+id;
+            String query = "delete from contactNumber where id="+id;
 
             stmt.executeUpdate(query);
 

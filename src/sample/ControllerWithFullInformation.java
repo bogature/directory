@@ -59,10 +59,11 @@ public class ControllerWithFullInformation {
             fxmlLoader.setLocation(getClass().getResource("addNumber.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
-            stage.setTitle("New Window");
+            stage.setTitle("");
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner((Stage) list.getScene().getWindow());
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             System.out.println("bla");
